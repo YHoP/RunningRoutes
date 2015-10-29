@@ -4,6 +4,7 @@
     <string name="action_friends">Friends</string>
     <string name="action_settings">Settings</string>
     <string name="formatted_time">EEEE, MMMM d \'at\' h:mm</string>
+    <string name="timezone">PST</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="title_activity_user">UserActivity</string>
     <string name="title_activity_friend">FriendActivity</string>

@@ -86,8 +86,8 @@ public class Route extends Model {
     }
 
     public String getFormattedTime(Context context) {
-        SimpleDateFormat formatter = new SimpleDateFormat(context.getString("EEEE, MMMM d 'at' h:mm"));
-        formatter.setTimeZone(TimeZone.getTimeZone(context.getString("PST")));
+        SimpleDateFormat formatter = new SimpleDateFormat(context.getString(R.string.formatted_time));
+        formatter.setTimeZone(TimeZone.getTimeZone(context.getString(R.string.timezone)));
         return formatter.format(mTime);
     }
 
