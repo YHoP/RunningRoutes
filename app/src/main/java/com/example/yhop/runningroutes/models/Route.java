@@ -21,14 +21,23 @@ public class Route extends Model {
     @Column(name = "Name")
     private String mName;
 
+    @Column(name = "Date")
+    private String mDate;
+
     @Column(name = "Location")
     private String mLocation;
 
     @Column(name = "Distance")
     private long mDistance;
 
-    @Column(name = "Time")
-    private long mTime;
+    @Column(name = "TotalTime")
+    private long mTotalTime;
+
+    @Column(name = "Pace")
+    private long mPace;
+
+    @Column(name = "MapId")
+    private int mMapId;
 
     @Column(name = "User")
     private String mUser;
@@ -37,11 +46,12 @@ public class Route extends Model {
         super();
     }
 
-    public Route (String name, String location, long distance, long time, String user){
+    public Route (String name, String date, String location, long distance, long totalTime, String user){
         mName = name;
+        mDate = date;
         mLocation = location;
         mDistance = distance;
-        mTime = time;
+        mTotalTime = totalTime;
         mUser = user;
     }
 
@@ -52,6 +62,10 @@ public class Route extends Model {
     public void setName(String name) {
         mName = name;
     }
+
+    public String getDate() { return mDate;}
+
+    public void setDate(String date) { mDate = date; }
 
     public String getLocation() {
         return mLocation;
@@ -69,13 +83,17 @@ public class Route extends Model {
         mDistance = distance;
     }
 
-    public long getTime() {
-        return mTime;
+    public long getTotalTime() {
+        return mTotalTime;
     }
 
-    public void setTime(long time) {
-        mTime = time;
+    public void setTotalTime(long totalTime) {
+        mTotalTime = totalTime;
     }
+
+    public int getMapId() { return mMapId; }
+
+    public void setMapId(int mapId) { mMapId = mapId; }
 
     public String getUser() {
         return mUser;
@@ -88,12 +106,19 @@ public class Route extends Model {
     public String getFormattedTime(Context context) {
         SimpleDateFormat formatter = new SimpleDateFormat(context.getString(R.string.formatted_time));
         formatter.setTimeZone(TimeZone.getTimeZone(context.getString(R.string.timezone)));
-        return formatter.format(mTime);
+        return formatter.format(mTotalTime);
     }
 
     public static List<Route> all(){
         return new Select()
                 .from(Route.class)
                 .execute();
+    }
+
+    public static Route find(String location) {
+        return new Select()
+                .from(Route.class)
+                .where("Location = ?", location)
+                .executeSingle();
     }
 }
