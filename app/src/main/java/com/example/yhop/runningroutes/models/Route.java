@@ -28,31 +28,30 @@ public class Route extends Model {
     private String mLocation;
 
     @Column(name = "Distance")
-    private long mDistance;
+    private double mDistance;
 
     @Column(name = "TotalTime")
-    private long mTotalTime;
+    private double mTotalTime;
 
     @Column(name = "Pace")
-    private long mPace;
+    private double mPace;
 
     @Column(name = "MapId")
     private int mMapId;
 
-    @Column(name = "User")
-    private String mUser;
+    @Column(name = "UserName")
+    private String mUserName;
 
     public Route(){
         super();
     }
 
-    public Route (String name, String date, String location, long distance, long totalTime, String user){
+    public Route (String name, String date, String location, double distance, double totalTime){
         mName = name;
         mDate = date;
         mLocation = location;
         mDistance = distance;
         mTotalTime = totalTime;
-        mUser = user;
     }
 
     public String getName() {
@@ -75,7 +74,7 @@ public class Route extends Model {
         mLocation = location;
     }
 
-    public long getDistance() {
+    public double getDistance() {
         return mDistance;
     }
 
@@ -83,7 +82,7 @@ public class Route extends Model {
         mDistance = distance;
     }
 
-    public long getTotalTime() {
+    public double getTotalTime() {
         return mTotalTime;
     }
 
@@ -96,11 +95,11 @@ public class Route extends Model {
     public void setMapId(int mapId) { mMapId = mapId; }
 
     public String getUser() {
-        return mUser;
+        return mUserName;
     }
 
-    public void setUser(String user) {
-        mUser = user;
+    public void setUser(String userName) {
+        mUserName = userName;
     }
 
     public String getFormattedTime(Context context) {

@@ -14,10 +14,10 @@
     tools:context="com.example.yhop.runningroutes.ui.ProfileActivity">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/UserImage"
-        android:src="@drawable/user"
+        android:src="@android:drawable/ic_menu_camera"
         android:paddingBottom="8dp"/>
 
     <TextView
@@ -27,29 +27,44 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/UserImage"
         android:text="YHoP"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:gravity="center"/>
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/userNameText"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/UserImage"
+        android:layout_toEndOf="@+id/UserImage"
         android:layout_below="@+id/userNameText"
-        android:textColor="@android:color/darker_gray"
-        android:text="Half Marathoner"
-        android:gravity="center"/>
+        android:layout_above="@android:id/list">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/locationText"
+            android:text="Portland, OR"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lastDateText"
+            android:text="Last Run 3 days ago"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:id="@android:id/list"
         android:layout_below="@+id/UserImage"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

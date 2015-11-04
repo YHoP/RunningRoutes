@@ -25,6 +25,9 @@ public class User extends Model {
     @Column(name = "ImageId")
     private int mImageId;
 
+    @Column(name = "TotalRoutes")
+    private int mTotalRoutes;
+
     public User() {
         super();
     }
@@ -57,6 +60,10 @@ public class User extends Model {
     public void setImageId(int imageId) {
         mImageId = imageId;
     }
+
+    public int getTotalRoutes() { return mTotalRoutes; }
+
+    public void setTotalRoutes(int totalRoutes) { mTotalRoutes = totalRoutes; }
 
     public static List<User> all(){
         return new Select()
