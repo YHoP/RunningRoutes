@@ -8,8 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.yhop.runningroutes.R;
+import com.google.android.gms.maps.GoogleMap;
 
 public class MainActivity extends AppCompatActivity {
+
+    GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
             case  R.id.action_friends:
                 Intent friendIntent = new Intent(this, FriendActivity.class);
                 startActivity(friendIntent);
+                break;
+            case  R.id.action_maps:
+                Intent mapIntent = new Intent(this, MapsActivity.class);
+                startActivity(mapIntent);
                 break;
             case  R.id.action_settings:
                 Intent settingIntent = new Intent(this, SettingActivity.class);
