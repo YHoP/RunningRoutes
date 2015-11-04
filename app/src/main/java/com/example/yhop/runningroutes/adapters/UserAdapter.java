@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.yhop.runningroutes.R;
+import com.example.yhop.runningroutes.models.Route;
 import com.example.yhop.runningroutes.models.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by YHoP on 11/3/15.
@@ -50,9 +53,10 @@ public class UserAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.user_list_item, null);
             holder = new ViewHolder();
-            holder.nameLabel = (TextView) convertView.findViewById(R.id.nameLabel);
-            holder.dateLabel = (TextView) convertView.findViewById(R.id.dateLabel);
-            holder.tweetLabel = (TextView) convertView.findViewById(R.id.tweetLabel);
+            holder.userImage = (ImageView) convertView.findViewById(R.id.userImage);
+            holder.userNameText = (TextView) convertView.findViewById(R.id.userNameText);
+            holder.locationText = (TextView) convertView.findViewById(R.id.locationText);
+            holder.routeCountText = (TextView) convertView.findViewById(R.id.routeCountText);
 
             convertView.setTag(holder);
         } else {
@@ -60,17 +64,20 @@ public class UserAdapter extends BaseAdapter {
         }
 
         User user = mUsers.get(position);
+        List<Route> routes = user.getRoutes();
 
-        holder.dateLabel.setText(user.getFormattedTime(mContext));
-        holder.nameLabel.setText("By: " + user.getUser().getName());
-        holder.tweetLabel.setText(user.getContent());
+        holder.userImage.setImageResource(user.getImageId());
+        holder.userNameText.setText(user.getName());
+        holder.locationText.setText(user.getLocation());
+        holder.routeCountText.setText(routes.size() + "");
 
         return convertView;
     }
 
     private static class ViewHolder {
-        TextView nameLabel;
-        TextView tweetLabel;
-        TextView dateLabel;
+        ImageView userImage;
+        TextView userNameText;
+        TextView locationText;
+        TextView routeCountText;
     }
 }
