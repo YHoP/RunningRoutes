@@ -1,26 +1,37 @@
 package com.example.yhop.runningroutes.ui;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.yhop.runningroutes.R;
+import com.example.yhop.runningroutes.adapters.RouteAdapter;
+import com.example.yhop.runningroutes.models.Route;
 
-public class ProfileActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class ProfileActivity extends ListActivity {
+
+    private ArrayList<Route> mRoutes;
+    private RouteAdapter mRouteAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
 
+        for (Route route : Route.all()){
+            mRoutes.add(route);
+        }
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mRouteAdapter = new RouteAdapter(this, mRoutes);
+        setListAdapter(mRouteAdapter);
     }
 
     @Override
