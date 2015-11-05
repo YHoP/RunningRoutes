@@ -9,13 +9,13 @@ import android.view.MenuItem;
 
 import com.example.yhop.runningroutes.R;
 import com.example.yhop.runningroutes.adapters.UserAdapter;
-import com.example.yhop.runningroutes.models.User;
+import com.example.yhop.runningroutes.models.Runner;
 
 import java.util.ArrayList;
 
 public class FriendActivity extends ListActivity {
 
-    private ArrayList<User> mUsers;
+    private ArrayList<Runner> mRunners;
     private UserAdapter mUserAdapter;
 
     @Override
@@ -24,7 +24,12 @@ public class FriendActivity extends ListActivity {
         setContentView(R.layout.activity_friend);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        for (Runner runner : Runner.all()){
+            mRunners.add(runner);
+        }
 
+        mUserAdapter = new UserAdapter(FriendActivity.this, mRunners);
+        setListAdapter(mUserAdapter);
 
     }
 

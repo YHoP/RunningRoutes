@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.yhop.runningroutes.R;
 import com.example.yhop.runningroutes.adapters.RouteAdapter;
@@ -13,24 +15,32 @@ import com.example.yhop.runningroutes.models.Route;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class ProfileActivity extends ListActivity {
 
     private ArrayList<Route> mRoutes;
     private RouteAdapter mRouteAdapter;
 
+    @Bind(R.id.userImage) ImageView mUserImage;
+    @Bind(R.id.userNameText) TextView mUserNameText;
+    @Bind(R.id.locationText) TextView mLocationText;
+    @Bind(R.id.lastDateText) TextView mLateDateText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
 
 
         for (Route route : Route.all()){
             mRoutes.add(route);
         }
 
-        mRouteAdapter = new RouteAdapter(this, mRoutes);
+        mRouteAdapter = new RouteAdapter(ProfileActivity.this, mRoutes);
         setListAdapter(mRouteAdapter);
     }
 

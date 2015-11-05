@@ -11,17 +11,17 @@ import com.activeandroid.annotation.Table;
 
 @Table(name = "User_Route", id = "_id")
 public class UserRoute extends Model{
-    @Column(name = "User")
-    public User mUser;
+    @Column(name = "Runner")
+    public Runner mRunner;
 
     @Column(name = "Route")
     public Route mRoute;
 
     public UserRoute() {super();}
 
-    public UserRoute(User user, Route route){
+    public UserRoute(Runner runner, Route route){
         super();
-        mUser = user;
+        mRunner = runner;
         mRoute = route;
     }
 

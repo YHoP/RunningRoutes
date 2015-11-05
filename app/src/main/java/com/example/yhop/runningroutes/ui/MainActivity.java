@@ -9,13 +9,19 @@ import android.view.MenuItem;
 
 import com.example.yhop.runningroutes.R;
 import com.example.yhop.runningroutes.data.RoutesData;
-import com.example.yhop.runningroutes.data.UsersData;
+import com.example.yhop.runningroutes.data.RunnersData;
 import com.google.android.gms.maps.GoogleMap;
 
 public class MainActivity extends AppCompatActivity {
 
-    UsersData mUsersData = new UsersData();
-    RoutesData mRoutesData = new RoutesData();
+    Runnable setData = new Runnable() {
+        @Override
+        public void run() {
+            RunnersData mRunnersData = new RunnersData();
+            RoutesData mRoutesData = new RoutesData();
+        }
+    };
+
 
     GoogleMap mMap;
 

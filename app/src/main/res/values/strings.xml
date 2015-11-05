@@ -1,4 +1,6 @@
 <resources>
+    <string name="parse_app_id">7gZ1S51W4un6sNM9isu4p2IVZzilBqStYBtPDnRa</string>
+    <string name="parse_client_key">T4HPoBCl22o416oBfVNtx307G8IsaUFN0IitJtRe</string>
     <string name="app_name">Running Routes</string>
     <string name="action_profile">Profile</string>
     <string name="action_friends">Friends</string>

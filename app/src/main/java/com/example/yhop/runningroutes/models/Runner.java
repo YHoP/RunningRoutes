@@ -13,8 +13,8 @@ import java.util.List;
  */
 
 
-@Table(name = "Users", id = "_id")
-public class User extends Model {
+@Table(name = "Runners", id = "_id")
+public class Runner extends Model {
 
     @Column(name = "Name")
     private String mName;
@@ -28,11 +28,11 @@ public class User extends Model {
     @Column(name = "TotalRoutes")
     private int mTotalRoutes;
 
-    public User() {
+    public Runner() {
         super();
     }
 
-    public User(String name) {
+    public Runner(String name) {
         super();
         mName = name;
     }
@@ -65,15 +65,15 @@ public class User extends Model {
 
     public void setTotalRoutes(int totalRoutes) { mTotalRoutes = totalRoutes; }
 
-    public static List<User> all(){
+    public static List<Runner> all(){
         return new Select()
-                .from(User.class)
+                .from(Runner.class)
                 .execute();
     }
 
-    public static User find(String username) {
+    public static Runner find(String username) {
         return new Select()
-                .from(User.class)
+                .from(Runner.class)
                 .where("Name = ?", username)
                 .executeSingle();
     }
@@ -81,7 +81,7 @@ public class User extends Model {
     public List<Route> getRoutes(){
         List<UserRoute> joins = new Select()
                 .from(UserRoute.class)
-                .where("User = ?", getId())
+                .where("Runner = ?", getId())
                 .execute();
 
         List<Route> routes = new ArrayList<>();

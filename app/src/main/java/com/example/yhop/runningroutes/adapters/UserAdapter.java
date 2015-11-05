@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.yhop.runningroutes.R;
 import com.example.yhop.runningroutes.models.Route;
-import com.example.yhop.runningroutes.models.User;
+import com.example.yhop.runningroutes.models.Runner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +21,10 @@ import java.util.List;
 public class UserAdapter extends BaseAdapter {
 
     private Context mContext;
-    private ArrayList<User> mUsers;
+    private ArrayList<Runner> mRunners;
 
-    public UserAdapter(Context context, ArrayList<User> tweets) {
-        mUsers = tweets;
+    public UserAdapter(Context context, ArrayList<Runner> runners) {
+        mRunners = runners;
         mContext = context;
     }
 
@@ -33,12 +33,12 @@ public class UserAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        return mUsers.size();
+        return mRunners.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mUsers.get(position);
+        return mRunners.get(position);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UserAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.user_list_item, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.runner_list_item, null);
             holder = new ViewHolder();
             holder.userImage = (ImageView) convertView.findViewById(R.id.userImage);
             holder.userNameText = (TextView) convertView.findViewById(R.id.userNameText);
@@ -63,12 +63,12 @@ public class UserAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        User user = mUsers.get(position);
-        List<Route> routes = user.getRoutes();
+        Runner runner = mRunners.get(position);
+        List<Route> routes = runner.getRoutes();
 
-        holder.userImage.setImageResource(user.getImageId());
-        holder.userNameText.setText(user.getName());
-        holder.locationText.setText(user.getLocation());
+        holder.userImage.setImageResource(runner.getImageId());
+        holder.userNameText.setText(runner.getName());
+        holder.locationText.setText(runner.getLocation());
         holder.routeCountText.setText(routes.size() + "");
 
         return convertView;
