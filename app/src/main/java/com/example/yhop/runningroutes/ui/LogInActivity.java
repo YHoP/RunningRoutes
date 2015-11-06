@@ -71,14 +71,16 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         if(signUpModeActive) {
             User user = new User(username, password);
             user.signUp();
+            goToMainActivity();
         } else {
             User.login(username, password);
+            goToMainActivity();
         }
 
     }
 
     public void goToMainActivity() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(LogInActivity.this, MainActivity.class);
         startActivity(intent);
     }
 

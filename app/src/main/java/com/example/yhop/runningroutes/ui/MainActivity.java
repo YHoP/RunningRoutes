@@ -9,22 +9,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.yhop.runningroutes.R;
-import com.example.yhop.runningroutes.data.RoutesData;
-import com.example.yhop.runningroutes.data.RunnersData;
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-
-    Runnable setData = new Runnable() {
-        @Override
-        public void run() {
-            RunnersData mRunnersData = new RunnersData();
-            RoutesData mRoutesData = new RoutesData();
-        }
-    };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +26,29 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        if(ParseUser.getCurrentUser() == null){
-            Intent intent = new Intent(this, LogInActivity.class);
-            startActivity(intent);
+        if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+
+            goToLogInActivity();
+            finish();
+        } else {
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            if (currentUser == null) {
+                goToLogInActivity();
+                finish();
+            } else {
+                Toast.makeText(this, currentUser.getUsername(), Toast.LENGTH_LONG).show();
+            }
         }
-        Toast.makeText(this, ParseUser.getCurrentUser().getUsername(), Toast.LENGTH_LONG).show();
 
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
 
-//        RunnersData mRunnersData = new RunnersData();
-//        RoutesData mRoutesData = new RoutesData();
+    }
 
+    public void goToLogInActivity(){
+        Intent intent = new Intent(this, LogInActivity.class);
+        startActivity(intent);
     }
 
 
