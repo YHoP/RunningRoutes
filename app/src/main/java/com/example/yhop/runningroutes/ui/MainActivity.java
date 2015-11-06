@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.example.yhop.runningroutes.R;
 import com.example.yhop.runningroutes.data.RoutesData;
 import com.example.yhop.runningroutes.data.RunnersData;
-import com.google.android.gms.maps.GoogleMap;
+import com.parse.ParseObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+
+        RunnersData mRunnersData = new RunnersData();
+        RoutesData mRoutesData = new RoutesData();
 
     }
 
