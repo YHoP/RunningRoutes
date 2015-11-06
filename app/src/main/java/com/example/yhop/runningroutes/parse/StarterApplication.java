@@ -6,10 +6,11 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
-package com.example.yhop.runningroutes.ui;
+package com.example.yhop.runningroutes.parse;
 
 import android.app.Application;
 
+import com.example.yhop.runningroutes.R;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseUser;
@@ -25,7 +26,7 @@ public class StarterApplication extends Application {
     Parse.enableLocalDatastore(this);
 
     // Add your initialization code here
-    Parse.initialize(this, "7gZ1S51W4un6sNM9isu4p2IVZzilBqStYBtPDnRa", "T4HPoBCl22o416oBfVNtx307G8IsaUFN0IitJtRe");
+    Parse.initialize(this, String.valueOf(R.string.parse_app_id), String.valueOf(R.string.parse_client_key));
 
     ParseUser.enableAutomaticUser();
     ParseACL defaultACL = new ParseACL();

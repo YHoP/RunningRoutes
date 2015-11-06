@@ -12,16 +12,15 @@ import com.parse.SignUpCallback;
  */
 
 public class User {
-    ParseUser mParseUser;
+    ParseUser mParseUser = new ParseUser();
 
     public User(String username, String password) {
+        mParseUser = new ParseUser();
         mParseUser.setUsername(username);
         mParseUser.setPassword(password);
     }
 
-    public User() {
-        mParseUser = new ParseUser();
-    }
+
 
     public String getName() {
         return mParseUser.getString("username");
@@ -62,5 +61,6 @@ public class User {
             }
         });
     }
+
 }
 

@@ -6,14 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.yhop.runningroutes.R;
 import com.example.yhop.runningroutes.data.RoutesData;
 import com.example.yhop.runningroutes.data.RunnersData;
-import com.parse.Parse;
-import com.parse.ParseACL;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
+
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,27 +32,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
 
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
 
-        // Add your initialization code here
-        Parse.initialize(this, "7gZ1S51W4un6sNM9isu4p2IVZzilBqStYBtPDnRa", "T4HPoBCl22o416oBfVNtx307G8IsaUFN0IitJtRe");
+        if(ParseUser.getCurrentUser() == null){
+            Intent intent = new Intent(this, LogInActivity.class);
+            startActivity(intent);
+        }
+        Toast.makeText(this, ParseUser.getCurrentUser().getUsername(), Toast.LENGTH_LONG).show();
 
-        ParseUser.enableAutomaticUser();
-        ParseACL defaultACL = new ParseACL();
-        // Optionally enable public read access.
-        // defaultACL.setPublicReadAccess(true);
-        ParseACL.setDefaultACL(defaultACL, true);
 
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "lunch");
-        testObject.saveInBackground();
-
-        RunnersData mRunnersData = new RunnersData();
-        RoutesData mRoutesData = new RoutesData();
+//        RunnersData mRunnersData = new RunnersData();
+//        RoutesData mRoutesData = new RoutesData();
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
