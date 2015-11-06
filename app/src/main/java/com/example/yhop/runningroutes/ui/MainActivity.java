@@ -10,7 +10,10 @@ import android.view.MenuItem;
 import com.example.yhop.runningroutes.R;
 import com.example.yhop.runningroutes.data.RoutesData;
 import com.example.yhop.runningroutes.data.RunnersData;
+import com.parse.Parse;
+import com.parse.ParseACL;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,8 +33,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+
+        // Add your initialization code here
+        Parse.initialize(this, "7gZ1S51W4un6sNM9isu4p2IVZzilBqStYBtPDnRa", "T4HPoBCl22o416oBfVNtx307G8IsaUFN0IitJtRe");
+
+        ParseUser.enableAutomaticUser();
+        ParseACL defaultACL = new ParseACL();
+        // Optionally enable public read access.
+        // defaultACL.setPublicReadAccess(true);
+        ParseACL.setDefaultACL(defaultACL, true);
+
         ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
+        testObject.put("foo", "lunch");
         testObject.saveInBackground();
 
         RunnersData mRunnersData = new RunnersData();
