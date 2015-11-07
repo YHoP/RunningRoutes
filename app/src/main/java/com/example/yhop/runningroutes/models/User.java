@@ -12,7 +12,7 @@ import com.parse.SignUpCallback;
  */
 
 public class User {
-    ParseUser mParseUser = new ParseUser();
+    ParseUser mParseUser;
 
     public User(String username, String password) {
         mParseUser = new ParseUser();
